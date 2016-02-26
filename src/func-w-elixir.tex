@@ -1,0 +1,117 @@
+\documentclass{beamer}
+\usetheme{Berlin}
+\usecolortheme[light,accent=blue]{solarized}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\setmainfont{DejaVuSans}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{trees, shapes.misc, arrows}
+\usepackage{pgfkeys}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\setbeamertemplate{headline}{}
+
+\lstset{%
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    frame=signle,
+    keepspaces=true,
+    columns=flexible,
+    language=Java,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{solarizedBase00},
+    showspaces=false,
+    showstringspaces=false,
+    stepnumber=1,
+    showtabs=false,
+    stringstyle=\color{solarizedMagenta},
+    keywordstyle=\color{solarizedCyan},
+    commentstyle=\color{solarizedGreen},
+    tabsize=2
+}
+
+\title{Learning Functional Programming with Elixir}
+\subtitle{A Short Guide Through Functional Programming}
+\author[Ballou]{Kenny Ballou}
+\institute[zData]{%
+    \inst{}%
+    zData, Inc.
+}
+
+\AtBeginSection[]{%
+    \begin{frame}
+    \tableofcontents[
+        currentsection,
+        sectionstyle=show/shaded,
+        subsectionstyle=show/show/hide]
+    \end{frame}
+}
+
+\begin{document}
+% TikZ Styles
+\tikzstyle{every node}=[%
+    fill=solarizedBase02,
+    draw=solarizedBase01,
+    thick,
+    rounded corners,
+    anchor=north,
+    sibling distance=6cm]
+\tikzstyle{edge from parent}=[%
+    solarizedBase00,
+    -o,
+    thick,
+    draw]
+
+%\tikzstyle{edge from parent path}=[%
+%    \tikzparentnode.east |- \tikzchildnode.south]
+
+\begin{frame}[label=titleslide]
+\titlepage{}
+\end{frame}
+
+\begin{frame}
+\tableofcontents[subsectionstyle=hide]
+\end{frame}
+
+\begin{frame}
+\frametitle{Who am I?}
+\begin{itemize}
+\item{Hacker}
+\item{Developer (read gardener)}
+\item{Mathematician}
+\item{Student}
+\item{Author~(?)}
+\end{itemize}
+
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.45]{xkcd_functional.png}
+\caption{``Functional programming combines the flexibility and power of
+abstract mathematics with the intuitive clarity of abstract mathematics.''}
+\end{figure}
+XKCD on Functional\cite{website:xkcd_functional}
+\end{frame}
+
+\section*{References}
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\nocite{*}
+\renewcommand{\refname}{}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{frame}
+
+\againframe{titleslide}
+\end{document}
