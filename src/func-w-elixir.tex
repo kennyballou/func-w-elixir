@@ -1,6 +1,8 @@
-\documentclass{beamer}
+\documentclass[english]{beamer}
 \usetheme{Berlin}
 \usecolortheme[light,accent=blue]{solarized}
+\usepackage{amsmath}
+\usepackage{unicode-math}
 \usepackage{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
@@ -9,6 +11,7 @@
 \usepackage{lmodern}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{babel}
 \usepackage{tikz}
 \usetikzlibrary{trees, shapes.misc, arrows}
 \usepackage{pgfkeys}
@@ -24,8 +27,8 @@
     frame=signle,
     keepspaces=true,
     columns=flexible,
-    language=Java,
-    numbers=left,
+    language=Ruby,
+    numbers=none,
     numbersep=5pt,
     numberstyle=\tiny\color{solarizedBase00},
     showspaces=false,
@@ -35,7 +38,8 @@
     stringstyle=\color{solarizedMagenta},
     keywordstyle=\color{solarizedCyan},
     commentstyle=\color{solarizedGreen},
-    tabsize=2
+    tabsize=2,
+    extendedchars=true
 }
 
 \title{Learning Functional Programming with Elixir}
@@ -88,7 +92,6 @@
 \item{Developer (read gardener)}
 \item{Mathematician}
 \item{Student}
-\item{Author~(?)}
 \end{itemize}
 
 \end{frame}
@@ -101,7 +104,333 @@
 \caption{``Functional programming combines the flexibility and power of
 abstract mathematics with the intuitive clarity of abstract mathematics.''}
 \end{figure}
-XKCD on Functional\cite{website:xkcd_functional}
+XKCD on Functional Programming\cite{website:xkcd_functional}
+\end{frame}
+
+\begin{frame}
+\frametitle{What is Functional Programming?}
+\begin{itemize}
+\item<1->{Functional programming is a paradigm} %you might say pattern
+\item<2->{Prefers ``mathematical'' functions}
+\item<3->{Uses (mostly) immutable data} %depending on "purity"
+\item<4->{Everything is an expression}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What is Elixir? Erlang/OTP?}
+\begin{itemize}
+\item{Elixir is a new functional, dynamically typed language}
+\item{Elixir's design is heavily influenced by Erlang's design}
+\item{Erlang is an old functional, dynamically typed language, first appeared
+in 1986}
+\item{Built around concurrency, fault-tolerance, and high-availability}
+\item{Elixir compiles to BEAM (Erlang) bytecode}
+\item{Elixir ``looks'' like Ruby} %but don't even try to write ruby...
+\end{itemize}
+\end{frame}
+
+\section{Elixir Basics}
+
+\begin{frame}[fragile]
+\frametitle{Interactive Elixir}
+\framesubtitle{\texttt{iex}}
+\lstinputlisting{code/1/iex}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Numerals}
+\lstinputlisting[lastline=16]{code/1/numbers}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic types}
+\framesubtitle{Numeral Operators}
+\lstinputlisting[firstline=18]{code/1/numbers}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Atoms}
+\lstinputlisting[lastline=10]{code/1/atoms}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Atom Functions}
+\lstinputlisting[firstline=12]{code/1/atoms}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Booleans}
+\lstinputlisting[lastline=6]{code/1/booleans}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Boolean Operators}
+\lstinputlisting[firstline=8]{code/1/booleans}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Lists}
+\lstinputlisting[lastline=12]{code/1/lists}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{List Operations}
+\lstinputlisting[firstline=14]{code/1/lists}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Tuples}
+\lstinputlisting[lastline=6]{code/1/tuples}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Tuple Operations}
+\lstinputlisting[firstline=8]{code/1/tuples}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Binaries}
+\lstinputlisting[lastline=8]{code/1/binaries}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Binary Operations}
+\lstinputlisting[firstline=10]{code/1/binaries}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Maps}
+\lstinputlisting[lastline=10]{code/1/maps}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Map Operations}
+\lstinputlisting[firstline=12]{code/1/maps}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic Types}
+\framesubtitle{Functions}
+\lstinputlisting{code/1/functions}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dispelling Assignment}
+\framesubtitle{There is no spoon}
+\begin{itemize}
+\item{\texttt{=} does \textbf{not} mean \textit{assign}}
+\item{\texttt{x = 1} is not \textit{assign 1 to \texttt{x}}}
+\item{\texttt{=} is a \textit{match} operator}
+\begin{itemize}
+\item{\texttt{=} is a constraint-solving operator}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pattern Matching}
+\lstinputlisting[lastline=8]{code/1/patterns}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pattern Matching}
+\lstinputlisting[firstline=10,lastline=28]{code/1/patterns}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pattern Matching}
+\lstinputlisting[firstline=30,lastline=41]{code/1/patterns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pattern Matching}
+\framesubtitle{Brief Introduction to IEEE-754}
+\begin{itemize}
+\item{64-bit floating point (doubles) numbers are represented using IEEE-754}
+\item{32-bit (single/\texttt{float}) and 128-bit (quadurpals) are similarly
+represented with varying number of bits for each component}
+\item{There are four main components}
+\begin{itemize}
+\item{sign, ±, 1 bit}
+\item{exponent, 11 bits}
+\item{fraction (mantissa), 52 bits}
+\item{bias, built-in, typcially $1023$ for doubles}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pattern Matching}
+\framesubtitle{Brief Introduction to IEEE-754}
+To convert from binary bits to a ``float'', we can use the following formula:
+$$
+{-1}^{\text{sign}} \cdot{}
+\frac{1 + \text{mantissa}}{2^{52}}
+\cdot{} 2^{\text{exponent} - \text{bias}}
+$$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pattern Matching}
+\lstinputlisting[firstline=43]{code/1/patterns}
+\end{frame}
+
+\section{Functional Approach}
+
+\begin{frame}
+\frametitle{The Functional Approach}
+\framesubtitle{To all the things!}
+\begin{itemize}
+\item{Less iteration} %sorta
+\item{More (Tail) Recursion} %yay!
+\item{Performance}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fibonacci}
+Because no functional introduction is complete without it.
+\begin{align*}
+F_n &= F_{n-1} + F_{n-2} \\
+F_0 &= 0 \\
+F_1 &= 1
+\end{align*}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Fibonacci}
+\lstinputlisting[numbers=left]{code/2/fib_rec.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Fibonacci}
+\framesubtitle{Iteratively}
+\lstinputlisting[numbers=left]{code/2/fib_itr.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Fibonacci Performance}
+\lstinputlisting[language=bash]{code/2/fib_perf.out}
+\end{frame}
+
+\begin{frame}
+\frametitle{Quicksort}
+\begin{itemize}
+\item{Similar to merge sort}
+\item{Sort by partitioning}
+\item{Has a nice recursive definition} %more yay!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Quicksort}
+\lstinputlisting[numbers=left]{code/2/qs.exs}
+\lstinputlisting{code/2/qs.out}
+\end{frame}
+
+\begin{frame}
+\frametitle{Map-Reduce}
+\begin{itemize}
+\item<1->{Functional way to process collections}
+\item<2->{Can be (partially) pipelined}
+\item<3->{Mapping can be lazy}
+\item<4->{Map is Reduce} %with a widening accumlator
+\item<5->{They are ``folds''}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Map-Reduce}
+\framesubtitle{Implementing our own Map}
+\lstinputlisting[numbers=left]{code/2/my_map.exs}
+\lstinputlisting{code/2/my_map.out}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Map-Reduce}
+\framesubtitle{Implementing our own (simple) Reduce}
+\lstinputlisting[numbers=left]{code/2/my_red.exs}
+\lstinputlisting{code/2/my_red.out}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Map-Reduce}
+\framesubtitle{Map-Redux}
+\lstinputlisting[numbers=left]{code/2/my_map_red.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Map-Reduce}
+\framesubtitle{Map-Redux}
+\lstinputlisting{code/2/my_map_red.out}
+\end{frame}
+
+\begin{frame}
+\frametitle{Word Counting}
+\begin{itemize}
+\item{Stream lines out of a file}
+\item{Tokenize into words}
+\item{Reduce words and print results}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Word Counting}
+\begin{figure}
+\begin{tikzpicture}
+    \node (stream) at (0, 0) {Stream};
+    \node (tokenize) at (2, 0) {Tokenize};
+    \node (reduce) at (4, 0) {Reduce};
+    \node (print) at (4, -2) {Print};
+    \draw[-o] (stream) -- (tokenize);
+    \draw[-o] (tokenize) -- (reduce);
+    \draw[-o] (reduce) -- (print);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Word Counting}
+\framesubtitle{Streaming Data}
+\lstinputlisting[numbers=left,firstline=3,lastline=5]{code/2/wc.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Word Counting}
+\framesubtitle{Tokenizing Words}
+\lstinputlisting[numbers=left,firstline=7,lastline=9]{code/2/wc.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Word Counting}
+\framesubtitle{Reducing Words}
+\lstinputlisting[numbers=left,firstline=11,lastline=17]{code/2/wc.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Word Counting}
+\framesubtitle{Counting Words}
+\lstinputlisting[numbers=left,firstline=19,lastline=24]{code/2/wc.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Word Counting}
+\framesubtitle{Results}
+\lstinputlisting{code/2/wc.out}
 \end{frame}
 
 \section*{References}

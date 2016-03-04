@@ -1,0 +1,52 @@
+iex> x = 1
+1
+iex> 1 = x
+1
+iex> x = 2
+2
+iex> 1 = x
+** (MatchError) no match of right hand side value: 2
+
+iex> [a, b, c] = [1, 2, 3]
+[1, 2, 3]
+iex> a
+1
+iex> b
+2
+iex> c
+3
+iex> [1, _, c] = [1, 2, 3]
+[1, 2, 3]
+iex> [2, _, d] = [1, 2, 3]
+** (MatchError) no match of right hand side value: [1, 2, 3]
+
+iex> [h|t] = [1, 2, 3]
+[1, 2, 3]
+iex> h
+1
+iex> t
+[2, 3]
+
+iex> %{a: 1} = %{a: 1, b: 2, c: 3}
+%{a: 1, b: 2, c: 3}
+iex> %{} = %{a: 3}
+%{a: 3}
+
+defmodule Foobar do
+  def sum_list([]), do: 0
+  def sum_list([h|t]), do: h + sum_list(t)
+end
+
+iex> Foobar.sum_list [1, 2, 3, 4, 5]
+15
+
+iex> << sign :: size(1), exp :: size(11), mantissa :: size(52)>> =  <<3.14159 :: float>>
+<<64, 9, 249, 240, 27, 134, 110>>
+iex> sign
+0
+iex> exp
+1024
+iex> mantissa
+2570632149304942
+iex> :math.pow(-1, sign) * (1 + mantissa / :math.pow(2, 52)) * :math.pow(2, exp - 1023)
+3.14159
