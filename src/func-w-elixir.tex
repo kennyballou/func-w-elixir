@@ -1,21 +1,28 @@
 \documentclass[english]{beamer}
-\usetheme{Berlin}
-\usecolortheme[light,accent=blue]{solarized}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{unicode-math}
 \usepackage{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
-\setmainfont{DejaVuSans}
+\usepackage{xeCJK}
 \usepackage{booktabs}
 \usepackage{lmodern}
 \usepackage{listings}
 \usepackage{color}
-\usepackage{babel}
 \usepackage{tikz}
 \usetikzlibrary{trees, shapes.misc, arrows}
 \usepackage{pgfkeys}
 \usepackage{graphicx}
+
+\setmainfont{DejaVuSans}
+\setCJKmainfont{HanaMinA}
+\setCJKsansfont{HanaMinA}
+\setCJKmonofont{HanaMinA}
+\usetheme{Berlin}
+\usecolortheme[light,accent=blue]{solarized}
 \graphicspath{{./images/}}
 \setbeamertemplate{headline}{}
 
