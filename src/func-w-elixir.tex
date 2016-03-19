@@ -1,3 +1,4 @@
+
 \documentclass[english]{beamer}
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
@@ -121,24 +122,32 @@ XKCD on Functional Programming\cite{website:xkcd_functional}
 \item<2->{Prefers ``mathematical'' functions}
 \item<3->{Uses (mostly) immutable data} %depending on "purity"
 \item<4->{Everything is an expression}
+\item<5->{Functions are 1\textsuperscript{st} class}
+\begin{itemize}
+\item<6->{This gives higher-order functions}
+\end{itemize}
+\item<7->{Functions compose}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{What is Elixir? Erlang/OTP?}
 \begin{itemize}
-\item{Elixir is a new functional, dynamically typed language}
-\item{Elixir's design is heavily influenced by Erlang's design}
-\item{Erlang is an old functional, dynamically typed language, first appeared
-in 1986}
-\item{Built around concurrency, fault-tolerance, and high-availability}
-\item{Elixir compiles to BEAM (Erlang) bytecode}
-\item{Elixir ``looks'' like Ruby} %but don't even try to write ruby...
+\item<1->{Elixir is a new functional, dynamically typed language}
+\item<2->{Elixir's design is heavily influenced by Erlang's design}
+\begin{itemize}
+\item<3->{Erlang is also a functional, dynamically typed language, first
+appeared in 1986}
+\item<4->{Built around concurrency, fault-tolerance, and high-availability}
+\end{itemize}
+\item<5->{Elixir compiles to BEAM (Erlang) bytecode}
+\item<6->{Elixir ``looks'' like Ruby} %but don't even try to write ruby...
 \end{itemize}
 \end{frame}
 
 \section{Elixir Basics}
 
+\subsection{Syntax Crash Course}
 \begin{frame}[fragile]
 \frametitle{Interactive Elixir}
 \framesubtitle{\texttt{iex}}
@@ -221,9 +230,11 @@ represented with varying number of bits for each component}
 \framesubtitle{Brief Introduction to IEEE-754}
 To convert from binary bits to a ``float'', we can use the following formula:
 $$
-{-1}^{\text{sign}} \cdot{}
-\frac{1 + \text{mantissa}}{2^{52}}
-\cdot{} 2^{\text{exponent} - \text{bias}}
+\left({}{-1}^{\text{sign}}\right){} \cdot{}
+\left({}
+1 + \frac{\text{mantissa}}{2^{52}}
+\right){}
+\cdot{} \left({}2^{\text{exponent} - \text{bias}}\right){}
 $$
 \end{frame}
 
@@ -238,12 +249,15 @@ $$
 \frametitle{The Functional Approach}
 \framesubtitle{To all the things!}
 \begin{itemize}
-\item{Less iteration} %sorta
-\item{More (Tail) Recursion} %yay!
-\item{Performance}
+\item<1->{Less iteration} %sorta
+\item<2->{More (Tail) Recursion} %yay!
+\item<3->{Must Relearn Patterns}
+\item<4->{Performance}
 \end{itemize}
 \end{frame}
 
+\subsection{Example Problems}
+\subsubsection{Fibonacci}
 \begin{frame}
 \frametitle{Fibonacci}
 Because no functional introduction is complete without it.
@@ -270,6 +284,7 @@ F_1 &= 1
 \lstinputlisting[language=bash]{code/2/fib_perf.out}
 \end{frame}
 
+\subsubsection{Quicksort}
 \begin{frame}
 \frametitle{Quicksort}
 \begin{itemize}
@@ -282,9 +297,14 @@ F_1 &= 1
 \begin{frame}[fragile]
 \frametitle{Quicksort}
 \lstinputlisting[numbers=left]{code/2/qs.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Quicksort}
 \lstinputlisting{code/2/qs.out}
 \end{frame}
 
+\subsubsection{Map-Reduce}
 \begin{frame}
 \frametitle{Map-Reduce}
 \begin{itemize}
@@ -374,6 +394,41 @@ F_1 &= 1
 \frametitle{Word Counting}
 \framesubtitle{Results}
 \lstinputlisting{code/2/wc.out}
+\end{frame}
+
+\subsubsection{Parallel Map}
+\begin{frame}
+\frametitle{Parallel Map}
+\begin{itemize}
+\item{Spawn a process for each element in the list}
+\item{Evalutate the provided function for the element}
+\item{Gather and Return results}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Parallel Map}
+\lstinputlisting{code/2/pmap.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Parallel Map}
+\lstinputlisting{code/2/pmap.out}
+\end{frame}
+
+\section*{Going Forward}
+\subsection*{Resources}
+\begin{frame}
+\frametitle{Elixir Resources}
+\begin{itemize}
+\item<2->{\url{http://elixir-lang.org/}}
+\begin{itemize}
+\item<2->{\url{http://elixir-lang.org/getting-started/introduction.html}}
+\end{itemize}
+\item<3->{Learn X in Y minutes~\cite{website:learnxiny}}
+\item<4->{Programming Elixir~\cite{book:programming_elixir}}
+\item<4->{Metaprogramming Elixir~\cite{book:metaprogramming_elixir}}
+\end{itemize}
 \end{frame}
 
 \section*{References}
