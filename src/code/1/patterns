@@ -48,5 +48,7 @@ iex> exp
 1024
 iex> mantissa
 2570632149304942
-iex> :math.pow(-1, sign) * (1 + mantissa / :math.pow(2, 52)) * :math.pow(2, exp - 1023)
+iex> :math.pow(-1, sign) *
+...> (1 + mantissa / :math.pow(2, 52)) *
+...> :math.pow(2, exp - 1023)
 3.14159
