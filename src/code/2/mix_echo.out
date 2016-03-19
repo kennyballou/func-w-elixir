@@ -1,0 +1,10 @@
+% mix new echo_server
+...
+% find ./echo_server -type f
+./echo_server/mix.exs
+./echo_server/config/config.exs
+./echo_server/.gitignore
+./echo_server/lib/echo_server.ex
+./echo_server/test/echo_server_test.exs
+./echo_server/test/test_helper.exs
+./echo_server/README.md
