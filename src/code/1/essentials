@@ -1,0 +1,43 @@
+iex> 42
+42
+iex> :ok
+:ok
+iex> [1, 2, 3, 4]
+[1, 2, 3, 4]
+iex> {:reply, 42}
+{:reply, 42}
+iex> 'hello, world'
+'hello, world'
+iex> [104, 101, 108, 108, 111]
+'hello'
+iex> 'こにちは、世界'
+[12371, 12395, 12385, 12399, 12289, 19990, 30028]
+iex> "Hello, 世界"
+"Hello, 世界"
+iex> <<"Hello, 世界" :: utf8>>
+"Hello, 世界"
+
+iex> %{}
+%{}
+iex> %{a: 1, b: 2}
+%{a: 1, b: 2}
+iex> defmodule Person do
+...>   defstruct name: nil, age: 0, height: 0
+...> end
+iex> %Person{name: "Kenny Ballou", age: 24, height: 177}
+%Person{name: "Kenny Ballou", age: 24, height: 177}
+
+iex> f = fn(x) -> x * x end
+#Function<6.54118792/1 in :erl_eval.expr/5>
+iex> f.(2)
+4
+iex> defmodule Foobar do
+...>   def foo(x), do: x * 2
+...>   def bar(y) do
+...>     y |> foo() |> (&*/2).(3)
+...>   end
+...> end
+iex> Foobar.foo(5)
+10
+iex> Foobar.bar(2)
+12
