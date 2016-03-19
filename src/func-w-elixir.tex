@@ -386,9 +386,9 @@ F_1 &= 1
     \node (tokenize) at (2, 0) {Tokenize};
     \node (reduce) at (4, 0) {Reduce};
     \node (print) at (4, -2) {Print};
-    \draw[-o] (stream) -- (tokenize);
-    \draw[-o] (tokenize) -- (reduce);
-    \draw[-o] (reduce) -- (print);
+    \draw[-o,thick] (stream) -- (tokenize);
+    \draw[-o,thick] (tokenize) -- (reduce);
+    \draw[-o,thick] (reduce) -- (print);
 \end{tikzpicture}
 \end{figure}
 \end{frame}
