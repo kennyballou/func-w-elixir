@@ -437,6 +437,85 @@ F_1 &= 1
 \lstinputlisting{code/2/pmap.out}
 \end{frame}
 
+\subsubsection{Echo Server}
+\begin{frame}
+\frametitle{Echo Server}
+\begin{itemize}
+\item<2->{Handle connections from clients (\texttt{netcat})}
+\item<3->{Echo back contents of clients messages}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{mix}: Ladle of Elixir\texttt{|>}}
+\begin{itemize}
+\item<1->{Creates Skeleton Projects}
+\item<2->{Compiles Code}
+\item<3->{Runs Test Suites}
+\item<4->{Creates Release}
+\item<5->{Anything you want}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{mix} Output}
+\lstinputlisting{code/2/mix_echo.out}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Elixir\texttt{|>} Applications}
+\lstinputlisting[%
+    numbers=left,
+    title=mix.exs,
+    firstline=13,
+    lastline=16]{code/2/echo_server/mix.exs}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Elixir\texttt{|>} Applications}
+\lstinputlisting[%
+    numbers=left,
+    title=lib/echo\_server.ex]{code/2/echo_server/lib/echo_server.ex}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Elixir\texttt{|>} Supervisors}
+\lstinputlisting[%
+    numbers=left,
+    title=lib/echo\_server/supervisor.ex]
+    {code/2/echo_server/lib/echo_server/supervisor.ex}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Echo Server: Echo}
+\lstinputlisting[%
+    numbers=left,
+    title=lib/echo\_server/echo.ex,
+    firstline=3,
+    lastline=16]
+    {code/2/echo_server/lib/echo_server/echo.ex}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Echo Server: Echo}
+\lstinputlisting[%
+    numbers=left,
+    title=lib/echo\_server/echo.ex,
+    firstline=18,
+    lastline=34]
+    {code/2/echo_server/lib/echo_server/echo.ex}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Echo Server}
+\begin{columns}[c]
+\column{0.5\textwidth{}}
+\lstinputlisting{code/2/echo_server_iex.out}
+\column{0.5\textwidth{}}
+\lstinputlisting[stringstyle=\footnotesize\ttfamily]{code/2/echo_server_nc.out}
+\end{columns}
+\end{frame}
+
 \section*{Going Forward}
 \subsection*{Resources}
 \begin{frame}

@@ -1,0 +1,6 @@
+% iex -S mix
+...
+iex(1)> hd Application.started_applications
+{:echo_server,
+ 'echo_server',
+ '0.0.1'}
