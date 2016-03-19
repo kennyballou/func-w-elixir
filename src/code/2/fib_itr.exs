@@ -7,7 +7,7 @@ defmodule Fib do
     hd(acc)
   end
   defp compute_seq(n, i, acc) do
-    compute_seq(n, i+1, [Enum.at(acc, 0) + Enum.at(acc, 1) | acc])
+    compute_seq(n, i+1, [hd(acc) + (acc |> tl |> hd) | acc])
   end
 end
 
