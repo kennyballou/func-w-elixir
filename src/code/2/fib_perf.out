@@ -5,5 +5,5 @@
 
 % /usr/bin/time elixir fib_itr.exs
 12586269025
-0.24user 0.06system 0:00.28elapsed 110%CPU (0avgtext+0avgdata 33916maxresident)k
-0inputs+0outputs (0major+7617minor)pagefaults 0swaps
+0.25user 0.05system 0:00.27elapsed 112%CPU (0avgtext+0avgdata 38668maxresident)k
+0inputs+0outputs (0major+7450minor)pagefaults 0swaps
