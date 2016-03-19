@@ -6,7 +6,8 @@ defmodule MapReduce do
 
   def map([], _), do: []
   def map(l, f) do
-    reduce(l, [], fn(x, acc) -> acc ++ [f.(x)] end)
+    reduce(l, [], fn(x, acc) -> [f.(x) | acc] end)
+    |> Enum.reverse
   end
 end
 
